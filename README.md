@@ -60,3 +60,7 @@ _If you must...._
     -trainBeamSize 4 \
     -randomSeed 31337
 ```
+
+###### Acknowledgement
+* Thanks to [Prof. Graham Neubig](https://github.com/neubig) for the advices and scripts.
+* This work is made possible through the support of [Yaraku, Inc.](https://www.yarakuzen.com/about).
