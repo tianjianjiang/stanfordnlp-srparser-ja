@@ -1,30 +1,11 @@
 ## Stanford CoreNLP Shift-Reduce Parser for Japanese
 
+_There are several chart-based Japanese parsers, why bother? Because shift-reduce is much faster and Stanford's is accurate._
+
 #### Build
 ```bash
 > gradlew build
 > gradlew copyRuntimeLibs
-```
-
-#### Train
-1. Get a Japanese treebank such as [Japanese Dependency Corpus (JDC)](http://plata.ar.media.kyoto-u.ac.jp/data/word-dep/ "日本語係り受けコーパス")
-2. Prepare the trees in Penn Treebank S-expression.
-   * For example, use https://github.com/neubig/travatar/blob/master/script/tree/ja-dep2cfg.pl
-     to convert JDC's trees.
-3. Build a model with training and development sets, e.g. `JDC/train/all.cfg` and `JDC/dev/all.cfg`
-```bash
-> java -cp build/libs/yaraku-nlp-0.1.jar:lib/* \
-    edu.stanford.nlp.parser.shiftreduce.ShiftReduceParser \
-    -headFinder com.yaraku.nlp.trees.RightHeadFinder \
-    -trainTreebank JDC/cfg/train/all.cfg \
-    -devTreebank JDC/cfg/dev/all.cfg \
-    -serializedPath ja.beam.rightmost.model.ser.gz \
-    -trainingThreads 8 \
-    -trainingIterations 60 \
-    -stalledIterationLimit 20 \
-    -trainingMethod REORDER_BEAM \
-    -trainBeamSize 4 \
-    -randomSeed 31337
 ```
 
 #### Prepare
@@ -52,4 +33,30 @@ For example, input
 and expect the outcome like
 ```
 (ROOT (名詞P (助詞P (助詞P (名詞 すもも) (助詞 も)) (助詞P (名詞 もも) (助詞 も))) (名詞P (助詞P (名詞 もも) (助詞 の)) (名詞 うち))))
+```
+
+---
+
+#### Train
+
+_If you must...._
+
+1. Get a Japanese treebank such as [Japanese Dependency Corpus (JDC)](http://plata.ar.media.kyoto-u.ac.jp/data/word-dep/ "日本語係り受けコーパス")
+2. Prepare the trees in Penn Treebank S-expression.
+   * For example, use https://github.com/neubig/travatar/blob/master/script/tree/ja-dep2cfg.pl
+     to convert JDC's trees.
+3. Build a model with training and development sets, e.g. `JDC/train/all.cfg` and `JDC/dev/all.cfg`
+```bash
+> java -cp build/libs/yaraku-nlp-0.1.jar:lib/* \
+    edu.stanford.nlp.parser.shiftreduce.ShiftReduceParser \
+    -headFinder com.yaraku.nlp.trees.RightHeadFinder \
+    -trainTreebank JDC/cfg/train/all.cfg \
+    -devTreebank JDC/cfg/dev/all.cfg \
+    -serializedPath ja.beam.rightmost.model.ser.gz \
+    -trainingThreads 8 \
+    -trainingIterations 60 \
+    -stalledIterationLimit 20 \
+    -trainingMethod REORDER_BEAM \
+    -trainBeamSize 4 \
+    -randomSeed 31337
 ```
