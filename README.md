@@ -42,9 +42,10 @@ Be careful with classpath and model path.
 ```bash
 > java -cp build/libs/yaraku-nlp-0.1.jar:lib/* \
     com.yaraku.nlp.parser.shiftreduce.demo.JapaneseShiftReduceParserDemo \
-    -model ja.beam.rightmost.model.ser.gz
+    -model ja.beam.rightmost.model.ser.gz \
+    < tagged_sentence_file.txt > parsed_sentence_file.txt
 ```
-Note that it only supports line-by-line standard I/O for now. For example, input
+For example, input
 ```
 すもも/名詞 も/助詞 もも/名詞 も/助詞 もも/名詞 の/助詞 うち/名詞
 ```
