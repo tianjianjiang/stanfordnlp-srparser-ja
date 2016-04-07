@@ -41,6 +41,5 @@
 ```bash
     > java -cp build/libs/yaraku-nlp-0.1.jar:lib/* \
         com.yaraku.nlp.parser.shiftreduce.demo.JapaneseShiftReduceParserDemo
-    すもも/名詞 も/助詞 もも/名詞 も/助詞 もも/名詞 の/助詞 うち/名詞
-    (ROOT (名詞P (助詞P (助詞P (名詞 すもも) (助詞 も)) (助詞P (名詞 もも) (助詞 も))) (名詞P (助詞P (名詞 もも) (助詞 の)) (名詞 うち))))
 ```
+   Input `すもも/名詞 も/助詞 もも/名詞 も/助詞 もも/名詞 の/助詞 うち/名詞` and expect the outcome like `(ROOT (名詞P (助詞P (助詞P (名詞 すもも) (助詞 も)) (助詞P (名詞 もも) (助詞 も))) (名詞P (助詞P (名詞 もも) (助詞 の)) (名詞 うち))))`
