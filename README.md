@@ -4,8 +4,8 @@ _Chart-based Japanese parsers exist, why bother? Because shift-reduce is much fa
 
 #### Build
 ```bash
-> gradlew build
-> gradlew copyRuntimeLibs
+> ./gradlew build
+> ./gradlew copyRuntimeLibs
 ```
 
 #### Prepare
