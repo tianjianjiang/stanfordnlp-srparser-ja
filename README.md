@@ -1,6 +1,6 @@
 ## Stanford CoreNLP Shift-Reduce Parser for Japanese
 
-_There are several chart-based Japanese parsers, why bother? Because shift-reduce is much faster and Stanford's is accurate._
+_Chart-based Japanese parsers exist, why bother? Because shift-reduce is much faster and Stanford's is accurate._
 
 #### Build
 ```bash
@@ -13,7 +13,7 @@ Annotate Japanese sentences with word boundaries and part-of-speeches (POS). For
 ```bash
 > kytea -notag 2 < sentence_file.txt > tagged_sentence_file.txt
 ```
-Note that words must be delimited by half-width whitespace and POS must attach to each word with a slash as prefix.
+Note that words must be delimited by half-width whitespace and POS must attach to each word with a slash as separator.
 ```
 すもも/名詞 も/助詞 もも/名詞 も/助詞 もも/名詞 の/助詞 うち/名詞
 ```
@@ -61,6 +61,8 @@ _If you must...._
     -randomSeed 31337
 ```
 
+---
+
 ###### Acknowledgement
-* Thanks to [Prof. Graham Neubig](https://github.com/neubig) for the advices and scripts.
+* Thanks to [Prof. Graham Neubig](https://github.com/neubig) for the advice and scripts.
 * This work is made possible through the support of [Yaraku, Inc.](https://www.yarakuzen.com/about).
