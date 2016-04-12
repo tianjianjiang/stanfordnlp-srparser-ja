@@ -40,15 +40,20 @@ public class JapaneseShiftReduceParserDemo {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String text = scanner.nextLine();
-            List<TaggedWord> taggedWords = new ArrayList<>();
-            String[] tokens = text.split(" ");
-            for (String token: tokens) {
-                TaggedWord taggedWord = new TaggedWord();
-                taggedWord.setFromString(token);
-                taggedWords.add(taggedWord);
+            try {
+                List<TaggedWord> taggedWords = new ArrayList<>();
+                String[] tokens = text.split(" ");
+                for (String token: tokens) {
+                    TaggedWord taggedWord = new TaggedWord();
+                    taggedWord.setFromString(token);
+                    taggedWords.add(taggedWord);
+                }
+                Tree tree = model.apply(taggedWords);
+                System.out.println(tree);
+            } catch (Exception e) {
+                System.err.println(e.getMessage() + " with " + text);
+                throw e;
             }
-            Tree tree = model.apply(taggedWords);
-            System.out.println(tree);
         }
     }
 }
