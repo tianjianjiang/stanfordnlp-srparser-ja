@@ -4,6 +4,7 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.shiftreduce.ShiftReduceParser;
 import edu.stanford.nlp.trees.Tree;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,12 +38,20 @@ public class JapaneseShiftReduceParserDemo {
         ShiftReduceParser model = ShiftReduceParser.loadModel(modelPath);
         RedwoodConfiguration.current().clear().apply();
 
+        String text = "";
+        String[] tokens = new String[0];
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
-            String text = scanner.nextLine();
             try {
+                text = scanner.nextLine();
+                if (text.isEmpty()) {
+                    continue;
+                }
                 List<TaggedWord> taggedWords = new ArrayList<>();
-                String[] tokens = text.split(" ");
+                tokens = text.split("(?<!\\\\) ");
+                if (0 == tokens.length) {
+                    continue;
+                }
                 for (String token: tokens) {
                     TaggedWord taggedWord = new TaggedWord();
                     taggedWord.setFromString(token);
@@ -51,9 +60,11 @@ public class JapaneseShiftReduceParserDemo {
                 Tree tree = model.apply(taggedWords);
                 System.out.println(tree);
             } catch (Exception e) {
+                System.err.println("Tokens: " + Arrays.toString(tokens));
                 System.err.println(e.getMessage() + " with " + text);
-                throw e;
+                //throw e;
             }
         }
     }
 }
+
