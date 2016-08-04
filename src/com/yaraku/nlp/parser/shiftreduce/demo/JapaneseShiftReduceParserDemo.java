@@ -23,19 +23,26 @@ public class JapaneseShiftReduceParserDemo {
     public static void main(String[] args) {
         String modelPath = "ja.beam.rightmost.model.ser.gz";
 
+        List<String> restArgs = new ArrayList<>();
         for (int argIndex = 0; argIndex < args.length; ) {
             switch (args[argIndex]) {
                 case "-model":
                     modelPath = args[argIndex + 1];
                     argIndex += 2;
                     break;
+                case "-beamSize":
+                    restArgs.add(args[argIndex]);
+                    restArgs.add(args[argIndex + 1]);
+                    argIndex += 2;
+                    break;
                 default:
                     throw new RuntimeException("Unknown argument " + args[argIndex]);
             }
         }
+        String[] optionArray = restArgs.toArray(new String[restArgs.size()]);
 
         RedwoodConfiguration.empty().capture(System.err).apply();
-        ShiftReduceParser model = ShiftReduceParser.loadModel(modelPath);
+        ShiftReduceParser model = ShiftReduceParser.loadModel(modelPath, optionArray);
         RedwoodConfiguration.current().clear().apply();
 
         String text = "";
