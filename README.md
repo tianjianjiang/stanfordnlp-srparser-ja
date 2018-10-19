@@ -1,4 +1,4 @@
-## Stanford CoreNLP Shift-Reduce Parser for Japanese
+## Stanford CoreNLP Shift-Reduce Parser for Japanese (日本語係り受け解析)
 
 _Chart-based Japanese parsers exist, why bother? Because shift-reduce is much faster and Stanford's is accurate._
 
